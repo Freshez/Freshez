@@ -16,10 +16,8 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh '''
-                cd client
-                ../jenkins/scripts/test.sh
-                '''
+                sh "node --version"
+                sh './jenkins/scripts/test.sh'
             }
         }
         stage('Deliver') { 
