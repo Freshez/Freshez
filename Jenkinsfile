@@ -12,6 +12,7 @@ pipeline {
         stage('Build') { 
             steps {
                 sh 'npm install' 
+                sh 'npm install --prefix client' 
             }
         }
         stage('Test') {
