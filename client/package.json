@@ -21,7 +21,7 @@
   "scripts": {
     "start": "PORT=8000 react-scripts start",
     "build": "react-scripts build",
-    "test": "CI=true react-scripts test --env=jsdom --passWithNoTests",
+    "test": "CI=true react-scripts test --env=jsdom --passWithNoTests --no-watchman --all",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
