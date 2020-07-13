@@ -7,8 +7,8 @@ const Profile = require('../../models/VendorProfile');
 const User = require('../../models/User');
 const Post = require('../../models/Post');
 
-// @route   GET api/profile/me
-// @desc    Get current users profile
+// @route   GET api/vendorprofile/me
+// @desc    Get current users vendor profile
 // @access  Private
 router.get('/me', auth, async (req, res) => {
   try {
@@ -26,8 +26,8 @@ router.get('/me', auth, async (req, res) => {
   }
 });
 
-// @route   POST api/profile
-// @desc    Create or update a user profile
+// @route   POST api/vendorprofile
+// @desc    Create or update a user vendor profile
 // @access  Private
 router.post(
   '/',
@@ -129,8 +129,8 @@ router.post(
   }
 );
 
-// @route   GET api/profile
-// @desc    Get all profiles
+// @route   GET api/vendorprofile
+// @desc    Get all vendor profiles
 // @access  Public
 router.get('/', async (req, res) => {
   try {
@@ -143,8 +143,8 @@ router.get('/', async (req, res) => {
   }
 });
 
-// @route   GET api/profile/user/:user_id
-// @desc    Get profile by user ID
+// @route   GET api/vendorprofile/user/:user_id
+// @desc    Get vendor profile by user ID
 // @access  Public
 router.get('/user/:user_id', async (req, res) => {
   try {
@@ -165,7 +165,7 @@ router.get('/user/:user_id', async (req, res) => {
   }
 });
 
-// @route   DELETE api/profile
+// @route   DELETE api/vendorprofile
 // @desc    Delete profile, user & posts
 // @access  Private
 router.delete('/', auth, async (req, res) => {
@@ -186,8 +186,115 @@ router.delete('/', auth, async (req, res) => {
   }
 });
 
-// @route   PUT api/profile/
-// @desc    Delete profile, user & posts
+// @route   GET api/vendorprofile/user/:user_id/posts
+// @desc    Get vendor profile posts by user id
+// @access  Private
+router.get('/user/:user_id/posts', auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({
+      user: req.params.user_id,
+    }).populate('user', ['name', 'avatar']);
+
+    if (!profile) {
+      return res.status(400).json({ msg: 'Profile not found' });
+    }
+    res.json(profile.posts);
+  } catch (err) {
+    console.error(err.message);
+    if (err.kind == 'ObjectId') {
+      return res.status(400).json({ msg: 'Profile not found' });
+    }
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route   PUT api/vendorprofile/posts
+// @desc    Add post to vendor profile
+// @access  Private
+router.put(
+  '/posts',
+  [
+    auth,
+    [
+      check('header', 'Header is required').not().isEmpty(),
+      check('name', 'Name is required').not().isEmpty(),
+      check('text', 'Text is required').not().isEmpty(),
+    ],
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    try {
+      const user = await User.findById(req.user.id).select('-password');
+
+      const vendorprofile = await Profile.findOne({ user: req.user.id });
+
+      const newPost = new Post({
+        header: req.body.header,
+        text: req.body.text,
+        name: user.name,
+        avatar: user.avatar,
+        user: req.user.id,
+      });
+
+      const post = await newPost.save();
+      vendorprofile.posts.unshift(post);
+
+      await vendorprofile.save();
+
+      res.json(vendorprofile);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
+  }
+);
+
+// @route   DELETE api/vendorprofile/posts/:post_id
+// @desc    Delete post from vendor profile
+// @access  Private
+router.delete('/posts/:post_id', auth, async (req, res) => {
+  try {
+    const vendorprofile = await Profile.findOne({ user: req.user.id });
+    const post = await Post.findById(req.params.post_id);
+
+    if (!post) {
+      return res.status(404).json({ msg: 'Post not found' });
+    }
+
+    // Check user
+    if (post.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: 'User not authorized' });
+    }
+
+    // Get remove index
+    const removeIndex = vendorprofile.posts
+      .map(function (e) {
+        return e._id.toString();
+      })
+      .indexOf(post._id.toString());
+
+    vendorprofile.posts.splice(removeIndex, 1);
+
+    await vendorprofile.save();
+
+    await post.remove();
+
+    res.json(vendorprofile);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// @route   PUT api/vendorprofile/favoriteposts
+// @desc    Add favorite post to vendor profile
 // @access  Private
 
+// @route   PUT api/vendorprofile/products
+// @desc    Add product to vendor profile
+// @access  Private
 module.exports = router;

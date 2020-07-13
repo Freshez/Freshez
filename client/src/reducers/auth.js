@@ -7,6 +7,9 @@ import {
   LOGIN_FAIL,
   LOGOUT,
   ACCOUNT_DELETED,
+  REGISTER_BUTTON_VENDOR,
+  REGISTER_BUTTON_CUSTOMER,
+  DESELECT_ROLE_BUTTON,
 } from '../actions/types';
 
 const initialState = {
@@ -14,6 +17,8 @@ const initialState = {
   isAuthenticated: null,
   loading: true,
   user: null,
+  vendorSelected: false,
+  customerSelected: false,
 };
 
 export default function (state = initialState, action) {
@@ -47,6 +52,24 @@ export default function (state = initialState, action) {
         token: null,
         isAuthenticated: false,
         loading: false,
+      };
+    case REGISTER_BUTTON_VENDOR:
+      return {
+        ...state,
+        customerSelected: false,
+        vendorSelected: true,
+      };
+    case REGISTER_BUTTON_CUSTOMER:
+      return {
+        ...state,
+        vendorSelected: false,
+        customerSelected: true,
+      };
+    case DESELECT_ROLE_BUTTON:
+      return {
+        ...state,
+        customerSelected: false,
+        vendorSelected: false,
       };
     default:
       return state;

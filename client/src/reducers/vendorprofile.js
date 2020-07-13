@@ -3,6 +3,8 @@ import {
   PROFILE_ERROR,
   CLEAR_PROFILE,
   GET_PROFILES,
+  CLEAR_VENDOR_POSTS,
+  GET_VENDOR_POSTS,
 } from '../actions/types';
 
 const initialState = {
@@ -11,6 +13,7 @@ const initialState = {
   vendorprofiles: [],
   customerprofiles: [],
   loading: true,
+  vendorprofileposts: [],
 };
 
 export default function (state = initialState, action) {
@@ -40,6 +43,18 @@ export default function (state = initialState, action) {
       return {
         ...state,
         vendorprofile: null,
+        loading: false,
+      };
+    case CLEAR_VENDOR_POSTS:
+      return {
+        ...state,
+        vendorprofileposts: [],
+        loading: false,
+      };
+    case GET_VENDOR_POSTS:
+      return {
+        ...state,
+        vendorprofileposts: payload,
         loading: false,
       };
     default:

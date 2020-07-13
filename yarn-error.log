@@ -1,0 +1,74 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/bin/yarn add @material-ui/
+
+PATH: 
+  /Users/kevinmcnamara/.rvm/gems/ruby-2.5.3/bin:/Users/kevinmcnamara/.rvm/gems/ruby-2.5.3@global/bin:/Users/kevinmcnamara/.rvm/rubies/ruby-2.5.3/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/Users/kevinmcnamara/anaconda/bin:/Users/kevinmcnamara/.rvm/gems/ruby-2.5.3/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:~/bin:/usr/local/go/bin:/Users/kevinmcnamara/.rvm/gems/ruby-2.5.3@global/bin:/Users/kevinmcnamara/.rvm/rubies/ruby-2.5.3/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/Users/kevinmcnamara/anaconda/bin:/Users/kevinmcnamara/.rvm/bin:./node_modules/.bin:./node_modules/.bin
+
+Yarn version: 
+  1.22.4
+
+Node version: 
+  10.15.3
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/@material-ui%2f: Request "https://registry.yarnpkg.com/@material-ui%2f" returned a 405
+      at Request.params.callback [as _callback] (/usr/local/lib/node_modules/yarn/lib/cli.js:66996:18)
+      at Request.self.callback (/usr/local/lib/node_modules/yarn/lib/cli.js:140748:22)
+      at Request.emit (events.js:189:13)
+      at Request.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141720:10)
+      at Request.emit (events.js:189:13)
+      at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141642:12)
+      at Object.onceWrapper (events.js:277:13)
+      at IncomingMessage.emit (events.js:194:15)
+      at endReadableNT (_stream_readable.js:1125:12)
+      at process._tickCallback (internal/process/next_tick.js:63:19)
+
+npm manifest: 
+  {
+    "name": "mern-freshez",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "scripts": {
+      "start": "node server",
+      "server": "nodemon server --ignore client",
+      "client": "npm start --prefix client",
+      "dev": "concurrently \"npm run server\" \"npm run client\""
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/Freshez/Freshez.git"
+    },
+    "author": "Kevin McNamara",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/Freshez/Freshez/issues"
+    },
+    "homepage": "https://github.com/Freshez/Freshez#readme",
+    "dependencies": {
+      "@material/dialog": "^7.0.0",
+      "bcryptjs": "^2.4.3",
+      "bootstrap": "^4.5.0",
+      "config": "^3.3.1",
+      "express": "^4.17.1",
+      "express-validator": "^6.5.0",
+      "gravatar": "^1.8.0",
+      "jsonwebtoken": "^8.5.1",
+      "material-ui-fullscreen-dialog": "^1.1.0",
+      "mongoose": "^5.9.19",
+      "request": "^2.88.2"
+    },
+    "devDependencies": {
+      "concurrently": "^5.2.0",
+      "nodemon": "^2.0.4"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

@@ -16,6 +16,10 @@ const ProductSchema = new Schema({
   avatar: {
     type: String,
   },
+  img: {
+    data: Buffer,
+    contentType: String,
+  },
   likes: [
     {
       user: {

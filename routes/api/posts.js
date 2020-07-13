@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const cloudinary = require('cloudinary');
 const auth = require('../../middleware/auth');
 const { check, validationResult } = require('express-validator');
 
@@ -12,7 +13,13 @@ const User = require('../../models/User');
 // @access  Private
 router.post(
   '/',
-  [auth, [check('text', 'Text is required').not().isEmpty()]],
+  [
+    auth,
+    [
+      check('text', 'Text is required').not().isEmpty(),
+      check('header', 'Header is required').not().isEmpty(),
+    ],
+  ],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -23,16 +30,21 @@ router.post(
       const user = await User.findById(req.user.id).select('-password');
 
       const newPost = new Post({
+        header: req.body.header,
+        img: cloudinary.uploader.upload(req.img),
         text: req.body.text,
         name: user.name,
         avatar: user.avatar,
         user: req.user.id,
       });
 
+      console.log('IMAGE');
+      console.log(req.img);
+
       const post = await newPost.save();
 
       res.json(post);
-    } catch (error) {
+    } catch (err) {
       console.log(err.message);
       res.status(500).send('Server Error');
     }
@@ -223,6 +235,8 @@ router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
       .indexOf(req.user.id);
 
     post.comments.splice(removeIndex, 1);
+
+    await post.save();
 
     res.json(post.comments);
   } catch (err) {

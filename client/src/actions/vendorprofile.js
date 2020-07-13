@@ -2,11 +2,16 @@ import axios from 'axios';
 import { setAlert } from './alert';
 
 import {
+  SET_LOADING_TRUE,
+  SET_LOADING_FALSE,
   GET_PROFILE,
   GET_PROFILES,
   PROFILE_ERROR,
   CLEAR_PROFILE,
   ACCOUNT_DELETED,
+  SET_LOADING,
+  CLEAR_VENDOR_POSTS,
+  GET_VENDOR_POSTS,
 } from './types';
 
 // Get current users profile
@@ -160,5 +165,26 @@ export const deleteAccount = (id) => async (dispatch) => {
         payload: { msg: err.response.statusText, status: err.response.status },
       });
     }
+  }
+};
+
+// Get all vendor profile posts
+export const getPosts = (userId) => async (dispatch) => {
+  dispatch({ type: CLEAR_VENDOR_POSTS });
+  try {
+    const res = await axios.get(`/api/vendorprofile/user/${userId}/posts`);
+
+    dispatch({
+      type: GET_VENDOR_POSTS,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: {
+        msg: err.response.statusText,
+        status: err.response.status,
+      },
+    });
   }
 };

@@ -21,7 +21,7 @@ const VendorProfiles = ({
         <Fragment>
           <h1 className='large text-primary'>Vendors</h1>
           <p className='lead'>
-            <i className='fab fa-connectdevelop'></i> Browse vendors near you
+            <i className='fab'></i> Browse vendors near you
           </p>
           <div className='profiles'>
             {vendorprofiles.length > 0 ? (

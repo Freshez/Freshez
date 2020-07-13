@@ -6,15 +6,28 @@ const PostSchema = new Schema({
     type: Schema.Types.ObjectId,
     refs: 'users',
   },
+  header: {
+    type: String,
+    required: true,
+  },
   text: {
     type: String,
     required: true,
   },
   name: {
     type: String,
+    required: true,
   },
   avatar: {
     type: String,
+  },
+  date: {
+    type: Date,
+    default: Date.now,
+  },
+  img: {
+    data: Buffer,
+    contentType: String,
   },
   likes: [
     {
@@ -33,6 +46,9 @@ const PostSchema = new Schema({
       text: {
         type: String,
         required: true,
+      },
+      name: {
+        type: String,
       },
       avatar: {
         type: String,

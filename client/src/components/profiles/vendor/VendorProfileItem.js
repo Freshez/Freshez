@@ -21,12 +21,14 @@ const VendorProfileItem = ({
       <img src={avatar} alt='' className='round-img' />
       <div>
         <h2>{company}</h2>
-        <p my-1>{location}</p>
+        <p className='my-1'>{location}</p>
       </div>
     </div>
   );
 };
 
-VendorProfileItem.propTypes = {};
+VendorProfileItem.propTypes = {
+  vendorprofile: PropTypes.object.isRequired,
+};
 
 export default VendorProfileItem;

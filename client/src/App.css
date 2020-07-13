@@ -1,6 +1,6 @@
 /* Global Styles */
 :root {
-  --primary-color: #17a2b8;
+  --primary-color: black;
   --dark-color: #343a40;
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
@@ -128,8 +128,8 @@ img {
 
 .btn {
   display: inline-block;
-  background: var(--light-color);
-  color: #333;
+  background: var(--primary-color);
+  color: #fff;
   padding: 0.4rem 1.3rem;
   font-size: 1rem;
   border: none;
@@ -210,21 +210,13 @@ img {
 }
 
 .btn-role {
-  background: var(--primary-color);
+  background-color: red;
   color: #fff;
 }
 
-.btn-role:hover {
-  background-color: orange;
+.input-header {
+  margin-bottom: 25px;
 }
-
-.btn-role:focus {
-  background-color: red;
-}
-
-/* .btn-role:active {
-  background-color: #fff;
-} */
 
 .bg-light,
 .badge-light {
@@ -329,7 +321,7 @@ button {
   z-index: 1;
   width: 100%;
   top: 0;
-  border-bottom: solid 1px var(--primary-color);
+  border-bottom: none;
   opacity: 0.9;
 }
 
@@ -338,9 +330,24 @@ button {
 }
 
 .navbar a {
-  color: #fff;
+  color: black;
   padding: 0.45rem;
   margin: 0 0.25rem;
+}
+.nav-link {
+  display: flex;
+  flex-direction: row;
+  padding-left: 16px;
+  padding-right: 16px;
+  box-sizing: border-box;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.nav-link-hovered {
+  background-color: var(--light-color);
+  border: var(--light-color);
+  border-radius: 500px;
 }
 
 .navbar a:hover {
@@ -354,7 +361,7 @@ button {
 /* Landing Page */
 .landing {
   position: relative;
-  background: url('./img/showcase.jpg') no-repeat center center/cover;
+  background: url('./img/vegetables.jpg') no-repeat center center/cover;
   height: 100vh;
 }
 
@@ -385,10 +392,9 @@ button {
 .profile-grid {
   display: grid;
   grid-template-areas:
-    'top top'
-    'about about'
-    'exp edu'
-    'github github';
+    'top'
+    'posts'
+    'products';
   grid-gap: 1rem;
 }
 
@@ -426,8 +432,21 @@ button {
   text-align: center;
 }
 
-.profile-exp {
-  grid-area: exp;
+.profile-posts {
+  grid-area: posts;
+}
+
+.profile-post-item {
+  display: inline-block;
+  text-align: center;
+  justify-content: center;
+  border-bottom: white;
+}
+
+.profile-h2 {
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+  margin: 25px 25px;
 }
 
 .profile-edu {
@@ -439,11 +458,11 @@ button {
   margin-bottom: 1rem;
 }
 
-.profile-exp > div,
-.profile-edu > div {
+.profile-posts > div,
+.profile-products > div {
   margin-bottom: 1rem;
   padding-bottom: 1rem;
-  border-bottom: #ccc 1px dotted;
+  width: 100%;
 }
 
 .profile-exp > div:last-child,
@@ -509,8 +528,110 @@ button {
   margin-bottom: 0.5rem;
 }
 
+.modal-wrapper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.modal-box {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 70%;
+  width: 60%;
+  overflow-y: auto;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  z-index: 101;
+  padding: 40px;
+}
+
+.close-btn {
+  margin-left: 98%;
+  margin-top: -15px;
+  background: #fff;
+  color: #333;
+  border: none;
+  float: right;
+  width: 50px;
+  height: 50px;
+}
+
+.close-btn:hover {
+  margin-left: 98%;
+  background: var(--light-color);
+  color: #333;
+  border: none;
+  float: right;
+  width: 50px;
+  height: 50px;
+  border-radius: 500px;
+}
+
+.close-btn-outline {
+  box-sizing: border-box;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.close-btn-outline:hover {
+  background-color: var(--light-color);
+  border: var(--light-color);
+  border-radius: 500px;
+}
+
+.btn:focus,
+.btn:active {
+  outline: none !important;
+  box-shadow: none;
+}
+
+.user-img {
+  margin-left: 0.25rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.user-img i {
+  float: left;
+}
+.user-img h1 {
+  margin-top: -10px;
+  margin-left: 1rem;
+  float: left;
+}
+
+.register-modal {
+  top: '55%';
+  left: '50%';
+  right: 'auto';
+  bottom: 'auto';
+  margin-right: '-50%';
+  transform: 'translate(-50%, -50%)';
+  height: '80%';
+  width: '50%';
+}
 /* Mobile Styles */
 @media (max-width: 700px) {
+  .user-img h1 {
+    margin-top: -2px;
+    margin-left: 1rem;
+    float: left;
+  }
   .container {
     margin-top: 8rem;
   }
@@ -526,6 +647,10 @@ button {
 
   .large {
     font-size: 2rem;
+  }
+
+  .large-2 {
+    font-size: 1rem;
   }
 
   .lead {
@@ -594,5 +719,9 @@ button {
   .post a,
   .post button {
     padding: 0.3rem 0.4rem;
+  }
+
+  .btn {
+    margin-top: 10%;
   }
 }
