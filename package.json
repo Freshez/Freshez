@@ -8,6 +8,7 @@
     "server": "nodemon server --ignore client",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "test": "npm test --prefix client",
     "test": "CI=true react-scripts test --env=jsdom"
   },
   "repository": {
