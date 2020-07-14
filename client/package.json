@@ -21,7 +21,8 @@
   "scripts": {
     "start": "PORT=8000 react-scripts start",
     "build": "react-scripts build",
-    "test": "CI=true react-scripts test --env=jsdom --passWithNoTests --no-watchman --all",
+    "test": "CI=true react-scripts test --env=jsdom --passWithNoTests",
+    "test:watch": "npm run test -- --watch",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -43,6 +44,7 @@
   "devDependencies": {
     "@testing-library/react": "^9.5.0",
     "jest-dom": "^4.0.0",
-    "react-test-render": "^1.1.2"
+    "react-test-render": "^1.1.2",
+    "react-test-renderer": "^16.13.1"
   }
 }

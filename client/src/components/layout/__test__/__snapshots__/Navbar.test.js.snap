@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render snapshot renders 1`] = `
+<nav
+  className="navbar bg-white"
+>
+  <h1>
+    <div
+      className="nav-link"
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+    >
+      <a
+        href="/"
+        onClick={[Function]}
+      >
+        <i
+          className="fas"
+        />
+         Freshez
+      </a>
+    </div>
+  </h1>
+</nav>
+`;
