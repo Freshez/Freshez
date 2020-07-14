@@ -133,7 +133,7 @@ const Navbar = ({
           onMouseLeave={toggleHoverDevConnector}
         >
           <Link to='/'>
-            <i className='fas'></i> Freshez
+            <i className='fas fa-code'></i> Freshez
           </Link>
         </div>
       </h1>

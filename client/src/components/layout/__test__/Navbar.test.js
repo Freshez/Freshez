@@ -32,19 +32,3 @@ it('redners without crashing', () => {
     div
   );
 });
-
-describe('Render', () => {
-  test('snapshot renders', () => {
-    const component = renderer.create(
-      <Provider store={store}>
-        <Router>
-          <Fragment>
-            <Navbar></Navbar>
-          </Fragment>
-        </Router>
-      </Provider>
-    );
-    let tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
-  });
-});
