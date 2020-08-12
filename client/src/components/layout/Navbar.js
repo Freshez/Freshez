@@ -103,7 +103,7 @@ const Navbar = ({
           onMouseEnter={toggleHoverRegister}
           onMouseLeave={toggleHoverRegister}
         >
-          <Link to='' onClick={() => openRegisterModal()}>
+          <Link id='registerLink' to='' onClick={() => openRegisterModal()}>
             Register
           </Link>
         </div>
@@ -114,7 +114,7 @@ const Navbar = ({
           onMouseEnter={toggleHoverLogin}
           onMouseLeave={toggleHoverLogin}
         >
-          <Link to='' onClick={() => openLoginModal()}>
+          <Link id='loginLink' to='' onClick={() => openLoginModal()}>
             Login
           </Link>
         </div>
@@ -156,7 +156,7 @@ const mapStateToProps = (state) => ({
   vendorprofile: state.vendorprofile,
   customerprofile: state.customerprofile,
   loginModalOpen: state.modal.login_open,
-  regsiterModalOpen: state.modal.login_open,
+  regsiterModalOpen: state.modal.register_open,
 });
 
 export default connect(mapStateToProps, {

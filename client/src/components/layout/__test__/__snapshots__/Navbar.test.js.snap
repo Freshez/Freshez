@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render snapshot renders 1`] = `
+exports[`My Connected React-Redux Component should render with given state from Redux store 1`] = `
 <nav
   className="navbar bg-white"
 >
@@ -15,11 +15,57 @@ exports[`Render snapshot renders 1`] = `
         onClick={[Function]}
       >
         <i
-          className="fas"
+          className="fas fa-code"
         />
          Freshez
       </a>
     </div>
   </h1>
+  <ul>
+    <li>
+      <div
+        className="nav-link"
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <a
+          href="/vendorprofiles"
+          onClick={[Function]}
+        >
+          Vendors
+        </a>
+      </div>
+    </li>
+    <li>
+      <div
+        className="nav-link"
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <a
+          href="/"
+          id="registerLink"
+          onClick={[Function]}
+        >
+          Register
+        </a>
+      </div>
+    </li>
+    <li>
+      <div
+        className="nav-link"
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <a
+          href="/"
+          id="loginLink"
+          onClick={[Function]}
+        >
+          Login
+        </a>
+      </div>
+    </li>
+  </ul>
 </nav>
 `;
