@@ -13,6 +13,9 @@ cloudinary.config({
 // Connect Database
 connectDB();
 
+const path = require('path');
+app.use(express.static(path.join(__dirname, 'client/build')));
+
 // Init Middleware
 app.use(express.json({ extended: false }));
 
