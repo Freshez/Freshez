@@ -30,5 +30,5 @@ app.use('/api/posts', require('./routes/api/posts'));
 app.use('/api/products', require('./routes/api/products'));
 
 const port =
-  process.env.NODE_ENV === 'production' ? process.env.PORT || 80 : 5000;
+  process.env.NODE_ENV === 'production' ? process.env.PORT || 80 : 80;
 app.listen(port, () => console.log(`Server started on port ${port}`));
