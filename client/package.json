@@ -16,7 +16,12 @@
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
-    "uuid": "^8.1.0"
+    "uuid": "^8.1.0",
+    "react-loader-spinner": "^3.1.14",
+    "react-modal": "^3.11.2",
+    "react-promise-tracker": "^2.1.0",
+    "redux-persist": "^6.0.0",
+    "request": "^2.88.2"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -36,6 +36,6 @@ app.use('/api/customerprofile', require('./routes/api/customerprofile'));
 app.use('/api/posts', require('./routes/api/posts'));
 app.use('/api/products', require('./routes/api/products'));
 
-const port =
-  process.env.NODE_ENV === 'production' ? process.env.PORT || 80 : 5000;
-app.listen(port, () => console.log(`Server started on port ${port}`));
+// Listening
+const port = process.env.PORT || 5000;
+app.listen(port, () => console.log(`Server Running on port ${port}`));
