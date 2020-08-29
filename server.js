@@ -29,23 +29,23 @@ app.use(express.json({ extended: false }));
 app.get('/', (req, res) => res.send('API Running'));
 
 // Define Routes
-//if (process.env.NODE_ENV === 'development') {
-app.use('/api/users', require('./routes/api/users'));
-app.use('/api/auth', require('./routes/api/auth'));
-app.use('/api/vendorprofile', require('./routes/api/vendorprofile'));
-app.use('/api/customerprofile', require('./routes/api/customerprofile'));
-app.use('/api/posts', require('./routes/api/posts'));
-app.use('/api/products', require('./routes/api/products'));
-//}
+if (process.env.NODE_ENV === 'development') {
+  app.use('/api/users', require('./routes/api/users'));
+  app.use('/api/auth', require('./routes/api/auth'));
+  app.use('/api/vendorprofile', require('./routes/api/vendorprofile'));
+  app.use('/api/customerprofile', require('./routes/api/customerprofile'));
+  app.use('/api/posts', require('./routes/api/posts'));
+  app.use('/api/products', require('./routes/api/products'));
+}
 
-// if (process.env.NODE_ENV === 'production') {
-//   app.use('/users', require('./routes/api/users'));
-//   app.use('/auth', require('./routes/api/auth'));
-//   app.use('/vendorprofile', require('./routes/api/vendorprofile'));
-//   app.use('/customerprofile', require('./routes/api/customerprofile'));
-//   app.use('/posts', require('./routes/api/posts'));
-//   app.use('/products', require('./routes/api/products'));
-// }
+if (process.env.NODE_ENV === 'production') {
+  app.use('/users', require('./routes/api/users'));
+  app.use('/auth', require('./routes/api/auth'));
+  app.use('/vendorprofile', require('./routes/api/vendorprofile'));
+  app.use('/customerprofile', require('./routes/api/customerprofile'));
+  app.use('/posts', require('./routes/api/posts'));
+  app.use('/products', require('./routes/api/products'));
+}
 
 console.log('ENV');
 console.log(process.env.NODE_ENV);
