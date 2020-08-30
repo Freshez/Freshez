@@ -17,11 +17,11 @@ const path = require('path');
 
 app.use(express.static(path.join(__dirname, 'client/public')));
 
-if (process.env.NODE_ENV === 'production') {
-  app.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname, 'client/public', 'index.html'));
-  });
-}
+// if (process.env.NODE_ENV === 'production') {
+//   app.get('/*', function (req, res) {
+//     res.sendFile(path.join(__dirname, 'client/public', 'index.html'));
+//   });
+// }
 
 // Init Middleware
 app.use(express.json({ extended: false }));
